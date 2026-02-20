@@ -41,3 +41,6 @@ def create_df():
         'stops_num'        : int(STOPS_LABEL_TO_NUM[stops_label]),
         'class_num'        : int(CLASS_LABEL_TO_NUM([class_label])),
     ])
+
+def format_indian_roupies(x):
+    return f"₹ {float(x):,0f}".replace(",", " ")
