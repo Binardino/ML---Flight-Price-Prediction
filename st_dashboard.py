@@ -27,3 +27,17 @@ CITIES              = ["Delhi", "Mumbai", "Bangalore", "Kolkata", "Hyderabad", "
 TIME_BANDS          = ["Early_Morning", "Morning", "Afternoon", "Evening", "Night", "Late_Night"]
 STOPS_LABEL_TO_NUM  = {"zero": 0, "one": 1, "two_or_more": 2}
 CLASS_LABEL_TO_NUM  = {"Economy": 0, "Business": 1}    
+
+#
+def create_df():
+    return pd.DataFrame([
+        'airline'          : airline,
+        'source_city'      : source_city,
+        'destination_city' : destination_city,
+        'departure_time'   : departure_time,
+        'arrival_time'     : arrival_time,
+        'duration'         : float(duration),
+        'days_left'        : int(days_left),
+        'stops_num'        : int(STOPS_LABEL_TO_NUM[stops_label]),
+        'class_num'        : int(CLASS_LABEL_TO_NUM([class_label])),
+    ])
