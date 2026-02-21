@@ -55,7 +55,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-#Central code
+#Central bloc code - search engine & form
 st.markown('<div class="searchwrap">', 
            unsafe_allow_hmtl=True)
 
@@ -72,4 +72,27 @@ with st.container():
     with col3:
         class_label      = st.segmented_control('Class', options=['Economy', 'Business'], default='Economy')
 
+    col4, col5, col6, col7 = st.columns([1,1,1,1], vertical_alignment='bottom')
+
+    with col4:
+        airline = st.selectbox('Carrier', AIRLINES, index=0)
+
+    with col5:
+        stops_label = st.selectbox('Stop over', ['zero', 'one', 'two_or_more'], index=0)
+
+    with col6:
+        days_left = st.slider('Days before flight', 
+                              min_value=1, max_value=60, value=15)
+
+    with col7:
+        duration = st.number_input('Duration (in hours)', 
+                                   min_value=0.5, max_value=60.0, value=2.5,
+                                   steps=0.5)
         
+    col8, col9 = st.columns([1,1], vertical_alignment='bottom')
+
+    with col8:
+        departure_time = st.selectbox('Start time', TIME_BANDS, index=1)
+
+    with col9:
+        arrival_time   = st.selectbox('Arrival time', TIME_BANDS, index=3)
