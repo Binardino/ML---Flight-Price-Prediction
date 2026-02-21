@@ -44,3 +44,32 @@ def create_df():
 
 def format_indian_roupies(x):
     return f"₹ {float(x):,0f}".replace(",", " ")
+
+#header
+st.markdown(
+    """
+    <div class="header">
+    <h1> Flight Price Finder</h1>
+    <p>Online interface to find ticket price</p>
+    """,
+    unsafe_allow_html=True
+)
+
+#Central code
+st.markown('<div class="searchwrap">', 
+           unsafe_allow_hmtl=True)
+
+with st.container():
+    col1, col2, col3 = st.columns([1.1, 1.1, 1], 
+                                  vertical_alignment="bottom")
+    
+    with col1:
+        source_city      = st.selectbox('Origin city', CITIES, index=0)
+
+    with col2:
+        destination_city = st.selectbox('Destination city', CITIES, index=1)
+
+    with col3:
+        class_label      = st.segmented_control('Class', options=['Economy', 'Business'], default='Economy')
+
+        
