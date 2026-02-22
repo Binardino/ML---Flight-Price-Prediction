@@ -56,8 +56,7 @@ st.markdown(
 )
 
 #Central bloc code - search engine & form
-st.markown('<div class="searchwrap">', 
-           unsafe_allow_hmtl=True)
+st.markown('<div class="searchwrap">', unsafe_allow_hmtl=True)
 
 with st.container():
     col1, col2, col3 = st.columns([1.1, 1.1, 1], 
@@ -96,3 +95,32 @@ with st.container():
 
     with col9:
         arrival_time   = st.selectbox('Arrival time', TIME_BANDS, index=3)
+
+    st.markdown("<div style='height: 10px'></div>", unsafe_allow_html=True)
+    run = st.button('Search for best price', width='stretch')
+
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+#print results
+st.markdown("<div style='height: 12px'></div>", unsafe_allow_html=True)
+
+if run:
+    if source_city == destination_city:
+        st.warning("Origin & destination are identical : please choose two different cities")
+
+    else:
+        X_input = create_df(
+            airline=airline,
+            source_city=source_city,
+            destination_city=destination_city,
+            departure_time=departure_time,
+            arrival_time=arrival_time,
+            duration=duration,
+            days_left=days_left,
+            stops_label=stops_label,
+            class_label=class_label,
+        )
+        
+        pred = model.predict(X_input)[0]
+        pred = max(0,0, float(pred))
