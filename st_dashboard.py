@@ -124,3 +124,29 @@ if run:
         
         pred = model.predict(X_input)[0]
         pred = max(0,0, float(pred))
+
+        left, right = st.columns([1.2, 0.8])
+
+        with left:
+            st.markdown('Price estimation')
+            st.markdown(f'<div class="bigprice">{format_indian_roupies(pred)}</div>', unsafe_allow_html=True)
+            st.markdown('<div class="subtitle"Estimated price by the model in Indian Roupies</div>', unsafe_allow_html=True)
+            st.markdown("<hr style='opacity:15'>", unsafe_allow_html=True)
+
+            #sum up tag
+            pills = [f"{source_city} -> {destination_city}",
+                     airline,
+                     f"class : {class_label}",
+                     f"stops : {stops_label}",
+                     f"duration : {duration}",
+                     f"D - {days_left}",
+                     f"departure time : {departure_time}",
+                     f"arrival time : {arrival_time}"
+
+            ]
+            st.markdown("".join([f'<span class="pill">{p}</span>' for p in pills]), unsafe_allow_html=True)
+
+        with right:
+            st.markdown('### Details sent to the Model')
+            st.dataframe(X_input, width='stretch', hide_index=True)
+            st.caption('Your model includes preprocessing : OneHot + Scaler Imputers in the Pipeline')
